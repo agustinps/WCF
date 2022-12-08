@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Credit.Domain
+namespace Domain.Credit.Domain
 {
     [DataContract]
 
-    public class Credit
+    public class Loan
     {
         [DataMember]
         public int IdCredito { get; set; }

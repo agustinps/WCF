@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IClientService.cs" />
+    <Compile Include="ILoanService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contract.Domain\Credit.Domain.csproj">
+    <ProjectReference Include="..\..\Domain\Credit.Domain\Credit.Domain.csproj">
       <Project>{E93A2F3A-0F41-4AC0-ACAB-FA74C6128A99}</Project>
       <Name>Credit.Domain</Name>
     </ProjectReference>

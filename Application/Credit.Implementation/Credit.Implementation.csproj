@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DE9A0242-3CC4-4DF2-9122-F887DB5BF406}</ProjectGuid>
+    <ProjectGuid>{3EDF6F88-15E1-422B-A0E9-7CB3BE703010}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Credit.SqlRepository</RootNamespace>
-    <AssemblyName>Credit.SqlRepository</AssemblyName>
+    <RootNamespace>Credit.Implementation</RootNamespace>
+    <AssemblyName>Credit.Implementation</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,12 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,22 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientRepository.cs" />
-    <Compile Include="ConexionRepositorio.cs" />
+    <Compile Include="ClientService.cs" />
+    <Compile Include="LoanService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contract.Domain\Credit.Domain.csproj">
+    <ProjectReference Include="..\..\Domain\Credit.Domain\Credit.Domain.csproj">
       <Project>{E93A2F3A-0F41-4AC0-ACAB-FA74C6128A99}</Project>
       <Name>Credit.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contract.Repository\Contract.Repository.csproj">
+    <ProjectReference Include="..\..\Domain\Credit.Repository\Credit.Repository.csproj">
       <Project>{4A4141A4-AA58-4714-94B0-46FDB4177273}</Project>
-      <Name>Contract.Repository</Name>
+      <Name>Credit.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Credit.Contract\Credit.Contract.csproj">
+      <Project>{1F8B5F3E-8F4F-49E5-9BBD-32D7595EBB66}</Project>
+      <Name>Credit.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Credit.SqlRepository\Credit.SqlRepository.csproj">
+      <Project>{de9a0242-3cc4-4df2-9122-f887db5bf406}</Project>
+      <Name>Credit.SqlRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
-﻿using Credit.Domain;
+﻿using Domain.Credit.Domain;
 using System.Collections.Generic;
 
-namespace Contract.Repository
+namespace Domain.Credit.Repository
 {
     public interface IClientRepository
     {

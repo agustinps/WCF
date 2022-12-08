@@ -62,14 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="WcfClientService.svc" />
+    <Content Include="WcfLoanService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -79,11 +78,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Credit.Contract\Credit.Contract.csproj">
+    <ProjectReference Include="..\Application\Credit.Contract\Credit.Contract.csproj">
       <Project>{1f8b5f3e-8f4f-49e5-9bbd-32d7595ebb66}</Project>
       <Name>Credit.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Credit.Implementation\Credit.Implementation.csproj">
+    <ProjectReference Include="..\Application\Credit.Implementation\Credit.Implementation.csproj">
       <Project>{3edf6f88-15e1-422b-a0e9-7cb3be703010}</Project>
       <Name>Credit.Implementation</Name>
     </ProjectReference>

@@ -1,10 +1,10 @@
 ﻿using System.Configuration;
 
-namespace Credit.SqlRepository
+namespace Infrastructure.Credit.SqlRepository
 {
-    public class ConexionRepositorio
+    public class Repositoryconnection
     {
-        public static string ObtenerCadenaConexion()
+        public static string GetConnString()
         {
             return ConfigurationManager.ConnectionStrings["CreditosDB"].ToString();
         }

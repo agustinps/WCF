@@ -1,12 +1,12 @@
-﻿using Contract.Repository;
-using Credit.Domain;
-using Dapper;
+﻿using Dapper;
+using Domain.Credit.Domain;
+using Domain.Credit.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Credit.SqlRepository
+namespace Infrastructure.Credit.SqlRepository
 {
     public class ClientRepository : IClientRepository, IDisposable
     {
@@ -17,7 +17,7 @@ namespace Credit.SqlRepository
 
         public IEnumerable<Client> GetAllClients()
         {
-            using (var con = new SqlConnection(ConexionRepositorio.ObtenerCadenaConexion()))
+            using (var con = new SqlConnection(Repositoryconnection.GetConnString()))
             {
                 con.Open();                                
                 return con.Query<Client>("sp_Listar_Clientes", commandType: CommandType.StoredProcedure);                
@@ -26,7 +26,7 @@ namespace Credit.SqlRepository
 
         public Client GetClient(string documentNumber)
         {
-            using(var con = new SqlConnection(ConexionRepositorio.ObtenerCadenaConexion()))
+            using(var con = new SqlConnection(Repositoryconnection.GetConnString()))
             {
                 con.Open();
                 var parameters = new DynamicParameters();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Credit.Domain
+namespace Domain.Credit.Domain
 {
     [DataContract]
     public class Client
