@@ -42,6 +42,24 @@ CREATE TABLE [dbo].[Clientes](
 GO
 
 
+CREATE TABLE [dbo].[Prestamos](
+	[IdLoan] [int] IDENTITY(1,1) NOT NULL,
+	[LoanType] [int] NULL,
+	[ClientId] [int] NULL,
+	[Date] [datetime] NULL,
+	[Mount] [decimal](18, 2) NULL,
+	[PaymentDay] [datetime] NULL,
+	[Rate] [decimal](18, 2) NULL,
+	[Commission] [decimal](18, 2) NULL,
+ CONSTRAINT [PK_Prestamos] PRIMARY KEY CLUSTERED 
+(
+	[IdLoan] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,3 +110,107 @@ BEGIN
   where DocumentNumber = @pDocumento
 
 END
+
+
+
+CREATE PROCEDURE [dbo].[sp_Listar_Prestamos]	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    SELECT TOP (1000) [IdLoan]
+      ,[LoanType]
+      ,[ClientId]
+      ,[Date]
+      ,[Mount]
+      ,[PaymentDay]
+      ,[Rate]
+      ,[Commission]
+  FROM [Creditos].[dbo].[Prestamos]
+
+END
+GO
+
+CREATE PROCEDURE [dbo].[sp_Eliminar_Prestamo]
+	(
+	@IdLoan int	
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    DELETE FROM [dbo].[Prestamos] WHERE IdLoan = @IdLoan           	
+END
+GO
+
+CREATE PROCEDURE [dbo].[sp_Crear_Prestamo]	
+(
+	@LoanType int,
+    @ClientId int,
+    @Date DateTime,
+    @Mount decimal(18,2),
+    @PaymentDay date,
+    @Rate decimal(18,2),
+    @Commission decimal(18,2),
+	@IdCredito int OUTPUT
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    INSERT INTO [dbo].[Prestamos]
+           ([LoanType]
+           ,[ClientId]
+           ,[Date]
+           ,[Mount]
+           ,[PaymentDay]
+           ,[Rate]
+           ,[Commission])
+     VALUES
+           (@LoanType
+           ,@ClientId
+           ,@Date
+           ,@Mount
+           ,@PaymentDay
+           ,@Rate
+           ,@Commission)
+
+	set @IdCredito = SCOPE_IDENTITY()
+	return @IdCredito
+END
+GO
+
+CREATE PROCEDURE [dbo].[sp_Actualizar_Prestamo]	
+(
+	@IdLoan int,
+	@LoanType int,
+    @ClientId int,
+    @Date DateTime,
+    @Mount decimal(18,2),
+    @PaymentDay date,
+    @Rate decimal(18,2),
+    @Commission decimal(18,2)	
+)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    UPDATE [dbo].[Prestamos]
+           Set [LoanType] = @LoanType
+           ,[ClientId] = @ClientId
+           ,[Date] = @Date
+           ,[Mount] = @Mount
+           ,[PaymentDay] = @PaymentDay
+           ,[Rate] = @Rate
+           ,[Commission] = @Commission
+     WHERE IdLoan = @IdLoan           	
+END
+GO
